@@ -1,0 +1,61 @@
+package pasito.syntax;
+
+import java_cup.runtime.*;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.*;
+
+terminal String ID;
+terminal DEFAULT, PACKAGE, IMPORT, FUNC, INTERFACE, CASE, STRUCT, TYPE, ELSE, SWITCH, IF, CONST, VAR,
+			BREAK, CHAN, CONTINUE, DEFER, GO, GOTO, MAP, SELECT;
+terminal FOR, RETURN, RANGE;
+terminal BOOLEAN, TRUE, FALSE, INT32, FLOAT64;
+terminal Integer INT_NUMBER;
+terminal Float FLOAT_NUMBER;
+terminal String STRING_LIT;
+terminal PLUS, MINUS, TIMES, DIV, AND, EQ;
+terminal LPAR, RPAR, LT, LSBRACK, RSBRACK, LBRACK,
+         RBRACK, ASSIGN, DASSIGN, COMMA, SEMICOLON, NOT, DOTDOTDOT, COLON, DOT;
+terminal FALLTHROUGH;
+terminal  PLUSPLUS, MINUSMINUS;
+terminal BITAND, PLUSASSIGN, ANDASSIGN, NOTEQ, BITOR, MINUSASSIGN, ORASSIGN, OR, LE, BITXOR, TIMESASSIGN,
+			EXCLORASSIGN, CHANNEL, GT, GE, LSHIFT, DIVASSIGN, LSHIFTASSIGN, MOD, RSHIFT, MODASSIGN, RSHIFTASSIGN,
+			BITCLR, BITCLRASSIGN;
+
+non terminal SourceFile;
+non terminal TopLevelDecl, PackageClause, ImportDeclList, TopLevelDeclList, ImportDecl, ImportSpec, ImportSpecList;
+non terminal Declaration, FunctionDecl, MethodDecl; 
+non terminal ConstDecl;
+non terminal VarDecl;
+non terminal TypeDecl;
+non terminal Type;
+non terminal TypeSpecList;
+non terminal TypeLit, ArrayType, StructType, SliceType;
+non terminal FieldDecl, FieldDeclList;
+non terminal MethodSpec, MethodSpecList;
+non terminal Signature, Parameters, Result;
+non terminal ParameterList, ParameterDeclList;
+non terminal TypeList, Types;
+non terminal IdentifierList;
+non terminal Expression;
+non terminal ExpressionList;
+non terminal CompExpression, AddExpression, MultExpression;
+non terminal UnaryExpr, unary_op, PrimaryExpr, Slice, Arguments, Args;
+non terminal VariadicCommaOp;
+non terminal Operand;
+non terminal CompositeLit,  Function, MethodExpr, LiteralType, LiteralValue;
+non terminal ReceiverType;
+non terminal Element, ElementList, KeyedElement;
+non terminal VarSpec, VarSpecList;
+non terminal Block, Statement, StatementList, SimpleStmt, ForStmt;
+non terminal IfStmt, ElseOpt;
+
+
+/* Precedences */
+precedence left AND;
+precedence left LT, EQ;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIV;
+
+SourceFile ::= PACKAGE ID SEMICOLON ImportDeclList TopLevelDeclList;
